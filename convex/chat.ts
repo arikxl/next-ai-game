@@ -1,12 +1,12 @@
 import { v } from "convex/values";
-import { action } from "./_generated/server";
+import { action, mutation, query } from "./_generated/server";
+import { api } from "./_generated/api";
 import OpenAI from "openai";
 
 const openai = new OpenAI();
     export const handlePlayerAction = action({
     args: {
         message: v.string(),
-        
     },
 
     handler: async (ctx, args) => {
@@ -16,8 +16,33 @@ const openai = new OpenAI();
             model: 'gpt-3.5-turbo'
         }) 
 
-        // optionally return a value
-        console.log('completion:', completion)
+        const input = args.message;
+        const response = completion.choices[0].message.content ?? '';
+        await ctx.runMutation(api.chat.insertEntry, {
+            input, response
+        })
         return completion;
     },
+    });
+
+
+export const insertEntry = mutation({
+    args: {
+        input: v.string(),
+        response: v.string()
+    },
+    handler: async (ctx, args) => {
+        await ctx.db.insert('entries', {
+            input: args.input,
+            response: args.response,
+        })
+    }
 });
+
+
+export const getAllEntries = query({
+    handler: async (ctx)=>{
+        const entries = await ctx.db.query('entries').collect();
+        return entries;
+    }
+})

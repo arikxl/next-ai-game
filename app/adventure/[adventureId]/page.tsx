@@ -1,15 +1,17 @@
 'use client'
 
-import { useState } from "react"
-import { useAction, useQuery } from "convex/react";
+import { useEffect, useState } from "react"
+import { useAction, useMutation, useQuery } from "convex/react";
 
-import { api,  } from "@/convex/_generated/api";
+import { api, } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 
-const AdventurePage = ( props: {params: {adventureId: Id<'adventures'>}}) => {
+const AdventurePage = (props: { params: { adventureId: Id<'adventures'> } }) => {
   const handlePlayerAction = useAction(api.chat.handlePlayerAction);
 
   const [message, setMessage] = useState('');
+  const [title, setTitle] = useState('');
+  const [bgImg, setBgImg] = useState('');
   const entries = useQuery(api.chat.getAllEntries, { adventureId: props.params.adventureId });
 
 
@@ -19,16 +21,39 @@ const AdventurePage = ( props: {params: {adventureId: Id<'adventures'>}}) => {
     setMessage('');
   }
 
+  useEffect(() => {
+    if (entries?.length > 0) {
+      const adventureTitle = entries[0].response;
+      const regex = /"([^"]*)"/;
+      const result = adventureTitle.match(regex);
+
+      if (result) {
+        const textInQuotes = result[1];
+        setTitle(textInQuotes);
+      } else {
+        setTitle('Enjoy your Adventure!');
+      }
+      // const adventureTitle = entries[0].response.substring(1, entries[0].response.length - 1)
+      // setTitle(adventureTitle || '')
+    }
+    setBgImg(JSON.parse(localStorage.getItem('next-ai-adventure-bgImg')))
+
+  }, [entries])
+  // console.log('entries:', entries)
+
   return (
-    <main className="bg-slate-900 flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="flex flex-col   z-10 max-w-5xl w-full justify-between font-mono text-sm lg:flex">
-        <section className="flex flex-col">
-          <div className="bg-white rounded-xl h-[400px] w-1/2 p-4 mb-4 overflow-y-auto">
-            {entries?.map((e) => (
+    <main className="bg-slate-900 flex min-h-screen flex-col items-center "
+      style={{ backgroundImage: `url(${bgImg})` }}
+    >
+      <h1 className="text-white text-4xl my-6 ">{title}</h1>
+      <div className="flex bg-trans rounded-xl gap-2  z-10 max-w-6xl w-full justify-between  text-sm lg:flex">
+        <section className="flex flex-col flex-1">
+          <div className="bg-white rounded-xl h-[400px]  p-4 mb-4 overflow-y-auto font-mono">
+            {entries?.map((e, idx) => (
               <div key={e._id} className="flex flex-col gap-2 mb-4">
-                <p >{e.input}</p>
+                <p >{idx > 0 ? e.input : ''}</p>
                 <p >{e.response}</p>
-                <hr className="border-bermuda"/>
+                <hr className="border-cyan-400" />
               </div>
             ))}
           </div>
@@ -38,8 +63,14 @@ const AdventurePage = ( props: {params: {adventureId: Id<'adventures'>}}) => {
             />
             <button className='bg-white text-black px-6 rounded text-lg' type="submit">Go!</button>
           </form>
+        </section> 
+
+        <section className="flex-1 rounded-xl">
+          aa
         </section>
       </div>
+
+      {/* <img src={bgImg } alt='aa' /> */}
     </main>
   )
 }

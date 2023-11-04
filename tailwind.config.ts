@@ -15,7 +15,7 @@ const config: Config = {
       },
       colors: {
         'primary': '#ff77e9',
-        'bermuda': '#78dcca',
+        'trans': 'rgba(20, 20, 20,0.8)',
 
       }
     },

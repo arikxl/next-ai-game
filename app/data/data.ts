@@ -66,12 +66,12 @@ export const professions = [
 export const places = [
     {
         id: 11001,
-        place: 'The Future',
+        place: 'The Futuristic City',
         img: 'https://res.cloudinary.com/arikxl/image/upload/v1698922027/Ella2023/kbigfyrdjejlrnitn1wy.jpg'
     },
     {
         id: 11002,
-        place: 'Mystery Land',
+        place: 'The Fairy Tale Island',
         img:''
     },
     {
@@ -81,37 +81,37 @@ export const places = [
     },
     {
         id: 11004,
-        place: 'Spy',
+        place: 'The Mystery Cabin',
         img:''
     },
     {
         id: 11005,
-        place: 'Warrior',
+        place: 'The Magic Academy',
         img:''
     },
     {
         id: 11006,
-        place: 'Thief',
+        place: 'The Lost World',
         img:''
     },
     {
         id: 1007,
-        place: 'Investigator',
+        place: 'The Parallel Dimension',
         img:''
     },
     {
         id: 11008,
-        place: 'Scientist',
+        place: 'The Cursed Forest',
         img:''
     },
     {
         id: 11009,
-        place: 'Soldier',
+        place: 'The Psychedelic Nightmare',
         img:''
     },
     {
         id: 11010,
-        place: '',
+        place: 'The Animal Kingdom',
         img:''
     },
 

@@ -5,6 +5,7 @@ export default defineSchema({
     entries: defineTable({
         input: v.string(),
         response: v.string(),
+        imageUrl: v.optional(v.string()),
         adventureId: v.id('adventures'),
     }),
     adventures: defineTable({

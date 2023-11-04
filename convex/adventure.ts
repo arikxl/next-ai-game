@@ -46,8 +46,7 @@ export const setupAdventureEntries = internalAction({
 
         const input = `
             create for me a text based adventure RPG title about a ${adventure.characterClass}
-             named ${adventure.characterName} in the
-              ${adventure.adventurePlace}.
+             named ${adventure.characterName} in ${adventure.adventurePlace}.
             
             then You are a dungeon master who is going to run this text based adventure RPG for me (${adventure.characterName}).
             You will need to setup the adventure for me that takes place in ${adventure.adventurePlace}, involve having me fight random enemy encounters, reward me with loot after killing enemies, give me goals and quests, and finally let me know when i finish the overall adventure.
@@ -62,7 +61,7 @@ export const setupAdventureEntries = internalAction({
             - a health potion which heals 3 hp
 
             the adventure should have some of the following
-            - the hero must clear out the ${adventure.adventurePlace} from evil enemies
+            - the hero must clear out ${adventure.adventurePlace} from evil enemies
             - the game has 3 levels
             - each level has 1 set of enemies to fight
             - each level has some riddles

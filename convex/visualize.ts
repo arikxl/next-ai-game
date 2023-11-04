@@ -6,7 +6,7 @@ import { api, internal } from "./_generated/api";
 
 const openai = new OpenAI();
 
-export const visualizeLatestEntries = action({
+export const visualizeLatestEntries = internalAction({
     args: {
         adventureId: v.id('adventures'),
         entryId: v.id('entries'),
@@ -30,10 +30,12 @@ export const visualizeLatestEntries = action({
         const completion = await openai.chat.completions.create({
             messages: [{
                 role: 'user',
-                content: `Given a list of previous adventure entries for a text adventure game we are playing,
-                 please create a descriptive prompt for an artist with no context of the adventure,
-                 so that he can draw the most recent events in the adventure.
-                 here is the history of the adventure: ${previousEntriesCombined}`
+                content: `
+                Summarize the following adventure of a text based RPG.
+                 please give a one sentence visualize description for an artist who can use the description to paint us picture.
+
+                 here is the history of the adventure with the most recent events being at the end:
+                  "${previousEntriesCombined}"`
             }],
             model: 'gpt-3.5-turbo'
         })
@@ -70,8 +72,13 @@ export const addEntryVisualization = internalMutation({
         imageUrl: v.string()
     },
     handler: async (ctx, args) => {
-        await ctx.db.patch(args.entryId, { 
+        await ctx.db.patch(args.entryId, {
             imageUrl: args.imageUrl
         })
     }
 })
+
+
+//             Given a list of previous adventure entries for a text adventure game we are playing,
+// please create a descriptive prompt for an artist with no context of the adventure,
+//     so that he can draw the most recent events in the adventure.

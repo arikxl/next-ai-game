@@ -39,7 +39,8 @@ const AdventurePage = (props: { params: { adventureId: Id<'adventures'> } }) => 
     setBgImg(JSON.parse(localStorage.getItem('next-ai-adventure-bgImg')))
 
   }, [entries])
-  // console.log('entries:', entries)
+
+  const lastEntry = entries&& entries[entries.length - 1];
 
   return (
     <main className="bg-slate-900 flex min-h-screen flex-col items-center "
@@ -66,7 +67,14 @@ const AdventurePage = (props: { params: { adventureId: Id<'adventures'> } }) => 
         </section> 
 
         <section className="flex-1 rounded-xl">
-          aa
+
+          {
+            lastEntry && lastEntry.imageUrl
+              ? (<img src={ lastEntry.imageUrl} alt='aa' className=' h-[200px] w-2/3 rounded-lg '/>
+)
+              :(<span className="text-white">LOADING...</span>)
+          }
+
         </section>
       </div>
 

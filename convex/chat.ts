@@ -46,6 +46,7 @@ export const handlePlayerAction = action({
             input, response, adventureId: args.adventureId
         })
         // return completion;
+ 
     },
 });
 
@@ -57,12 +58,17 @@ export const insertEntry = mutation({
         adventureId: v.id('adventures'),
     },
     handler: async (ctx, args) => {
-        await ctx.db.insert('entries', {
+        const entryId= await ctx.db.insert('entries', {
             input: args.input,
             response: args.response,
             adventureId: args.adventureId
         })
+        await ctx.scheduler.runAfter(0,internal.visualize.visualizeLatestEntries, {
+            adventureId: args.adventureId,
+            entryId: entryId
+        })
     }
+    
 });
 
 

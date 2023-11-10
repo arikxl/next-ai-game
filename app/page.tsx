@@ -58,24 +58,26 @@ export default function Home() {
   }
 
   return (
-    <main className=" bg-slate-900 text-white flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <form className='flex flex-col' onSubmit={handleSubmit}>
+    <main className=" bg-slate-900 text-white flex min-h-screen flex-col items-center justify-between p-10">
+      <div className=" max-w-6xl w-full ">
+        <h1 className='text-center text-4xl underline'>Let Your Journey Begin</h1>
+        <form className='flex flex-col my-6 justify-center items-center' onSubmit={handleSubmit}>
           <input type="text" id='characterName' name='characterName' required={true}
-            className='text-black'
-            onChange={handleChange} value={story.characterName}
+            className='text-black w-1/3 mb-6 p-4 text-xl outline-none rounded-md focus:border-primary border-[3px]'
+            onChange={handleChange} value={story.characterName} placeholder='Choose your name'
           />
-          <div>
+          <div className='flex gap-6 w-full flex-wrap bg-slate-400 justify-between'>
             {professions.map((p) => (
               <div key={p.id} onClick={() => handleClick('characterClass', p.profession)}
-                className={story.characterClass === p.profession ? 'card bg-red-300' : 'card bg-green-400'}
+                className={story.characterClass === p.profession ? 'card border-primary border-[4px]' : 'card '}
+                style={{background: `url(${p.img})`}}
               >
                 {p.profession}
               </div>
             ))}
           </div>
           <hr />
-          <div>
+          <div className='flex'>
             {places.map((p) => (
               <div key={p.id} onClick={() => handleClick('adventurePlace', p.place, p.img)}
                 className='mb-2 cursor-pointer'
@@ -85,7 +87,7 @@ export default function Home() {
             ))}
           </div>
 
-          <button >START YOUR ADVENTURE</button>
+          <button className='bg-primary' >START YOUR ADVENTURE</button>
         </form>
 
       </div>

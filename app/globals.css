@@ -32,5 +32,5 @@ body {
 
 
 .card{
-  @apply  mb-2 cursor-pointer 
+  @apply  mb-2 cursor-pointer w-[200px] h-[300px] rounded-xl object-none	
 }

@@ -17,6 +17,9 @@ const config: Config = {
         'primary': '#ff77e9',
         'trans': 'rgba(20, 20, 20,0.8)',
 
+      },
+      fontFamily: {
+        'chakra': 'var(--font-chakra)'
       }
     },
   },

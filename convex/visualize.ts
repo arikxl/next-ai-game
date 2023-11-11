@@ -30,12 +30,16 @@ export const visualizeLatestEntries = internalAction({
         const completion = await openai.chat.completions.create({
             messages: [{
                 role: 'user',
-                content: `
-                Summarize the following adventure of a text based RPG.
-                 please give a one sentence visualize description for an artist who can use the description to paint us picture.
+                // content: `
+                // Summarize the following adventure of a text based RPG.
+                //  please give a one sentence visualize description for an artist who can use the description to paint us picture.
 
-                 here is the history of the adventure with the most recent events being at the end:
-                  "${previousEntriesCombined}"`
+                //  here is the history of the adventure with the most recent events being at the end:
+                //   "${previousEntriesCombined}"`
+                content: `
+                ${previousEntriesCombined}
+                Using the above adventure history, please describe the current scene so that I can use the description to draw a picture. 
+                `
             }],
             model: 'gpt-3.5-turbo'
         })
@@ -59,9 +63,13 @@ export const visualizeLatestEntries = internalAction({
         const imageResponse = await imageFetchResponse.json();
         const imageUrl = imageResponse.data[0].url;
 
+        const imageData = await fetch(imageUrl);
+        const image = await imageData.blob();
+        const storageId = await ctx.storage.store(image);
+
         await ctx.runMutation(internal.visualize.addEntryVisualization, {
             entryId: args.entryId,
-            imageUrl
+            imageUrl: await ctx.storage.getUrl(storageId) ?? ''
         })
     },
 });

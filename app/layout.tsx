@@ -1,11 +1,16 @@
 import type { Metadata } from 'next'
-import { Inter, Eagle_Lake } from 'next/font/google'
+import { Chakra_Petch, Eagle_Lake } from 'next/font/google'
 import './globals.css'
 import ConvexClientProvider from './ConvexClientProvider'
 
 const inter = Eagle_Lake({
   subsets: ['latin'],
   weight:['400']
+})
+export const chakra = Chakra_Petch({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-chakra'
 })
 
 export const metadata: Metadata = {
@@ -19,8 +24,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className={chakra.variable}>
+      <body className={inter.className }>
         <ConvexClientProvider>
           {children}
         </ConvexClientProvider>

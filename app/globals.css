@@ -32,5 +32,16 @@ body {
 
 
 .card{
-  @apply  mb-2 cursor-pointer w-[200px] h-[300px] rounded-xl object-none	
+  @apply mb-2 cursor-pointer rounded-xl items-end flex justify-center text-2xl p-2  ;
+  flex:1;
+  min-width: 200px;
+  min-height:300px;
+  background-position: center;
+  background-size: cover;
+  text-shadow: 1px 1px 3px black;
+}
+
+.text-shadow {
+  text-shadow: 1px 1px 3px black;
+
 }

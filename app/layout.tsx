@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
-import { Inter, IBM_Plex_Mono } from 'next/font/google'
+import { Inter, Eagle_Lake } from 'next/font/google'
 import './globals.css'
 import ConvexClientProvider from './ConvexClientProvider'
 
-const inter = IBM_Plex_Mono({
+const inter = Eagle_Lake({
   subsets: ['latin'],
-  weight: [`100`, `200`, `300`, `400`, `500`, `600`, `700`]
+  weight:['400']
 })
 
 export const metadata: Metadata = {

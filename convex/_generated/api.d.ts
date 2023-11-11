@@ -16,6 +16,7 @@ import type {
 } from "convex/server";
 import type * as adventure from "../adventure";
 import type * as chat from "../chat";
+import type * as inventory from "../inventory";
 import type * as visualize from "../visualize";
 
 /**
@@ -29,6 +30,7 @@ import type * as visualize from "../visualize";
 declare const fullApi: ApiFromModules<{
   adventure: typeof adventure;
   chat: typeof chat;
+  inventory: typeof inventory;
   visualize: typeof visualize;
 }>;
 export declare const api: FilterApi<

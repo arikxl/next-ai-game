@@ -46,17 +46,32 @@ export const professions = [
     },
     {
         id: 1010,
-        profession: '',
+        profession: 'TEST1',
         img:''
     },
     {
         id: 1011,
-        profession: '',
+        profession: 'TEST2',
         img:''
     },
     {
         id: 1012,
-        profession: '',
+        profession: 'TEST3',
+        img:''
+    },
+    {
+        id: 1013,
+        profession: 'TEST4',
+        img:''
+    },
+    {
+        id: 1014,
+        profession: 'TEST5',
+        img:''
+    },
+    {
+        id: 1015,
+        profession: 'TEST6',
         img:''
     },
 

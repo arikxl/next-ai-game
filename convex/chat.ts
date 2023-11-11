@@ -61,14 +61,20 @@ export const insertEntry = mutation({
         const entryId= await ctx.db.insert('entries', {
             input: args.input,
             response: args.response,
-            adventureId: args.adventureId
+            adventureId: args.adventureId,
+            health: 10,
+            inventory: []
         })
-        await ctx.scheduler.runAfter(0,internal.visualize.visualizeLatestEntries, {
+        await ctx.scheduler.runAfter(0, internal.visualize.visualizeLatestEntries, {
             adventureId: args.adventureId,
             entryId: entryId
+        });
+
+        await ctx.scheduler.runAfter(0, internal.inventory.summarizeInventory, {
+            entryId: entryId,
+            adventureId: args.adventureId,
         })
     }
-    
 });
 
 

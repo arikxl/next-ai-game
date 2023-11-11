@@ -16,6 +16,7 @@ const config: Config = {
       colors: {
         'primary': '#ff77e9',
         'trans': 'rgba(20, 20, 20,0.8)',
+        'trans1': 'rgba(20, 20, 20,0.6)',
 
       },
       fontFamily: {

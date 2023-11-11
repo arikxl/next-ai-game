@@ -57,7 +57,7 @@ const AdventurePage = (props: { params: { adventureId: Id<'adventures'> } }) => 
   }
 
   return (
-    <main className=" flex min-h-screen flex-col items-center "
+    <main className="bg-slate-900 flex min-h-screen flex-col items-center "
     >
       <h1 className="text-white text-4xl my-6 underline decoration-1 text-shadow  z-10 ">{title}</h1>
 

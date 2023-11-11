@@ -77,12 +77,15 @@ export default function Home() {
             ))}
           </div>
           <div className='w-full h-[0.3px] my-3 bg-white'></div>
-          <div className='flex'>
+          <div className='flex gap-6 w-full flex-wrap justify-between'>
             {places.map((p) => (
               <div key={p.id} onClick={() => handleClick('adventurePlace', p.place, p.img)}
-                className='mb-2 cursor-pointer'
+                className={story.adventurePlace === p.place ? 'card1 border-primary border-[4px]' : 'card1 '}
+                style={{ backgroundImage: `url(${p.img})` }}
               >
+                <span className='bg-trans1 w-full text-center'>
                 {p.place}
+                </span>
               </div>
             ))}
           </div>

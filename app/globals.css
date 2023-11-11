@@ -40,6 +40,15 @@ body {
   background-size: cover;
   text-shadow: 1px 1px 3px black;
 }
+.card1{
+  @apply mb-2 cursor-pointer rounded-xl items-end flex justify-center text-xl p-2  ;
+  flex:1;
+  min-width: 220px;
+  min-height:180px;
+  background-position: center;
+  background-size: cover;
+  text-shadow: 2px 2px 4px black;
+}
 
 .text-shadow {
   text-shadow: 1px 1px 3px black;

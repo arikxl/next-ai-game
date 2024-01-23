@@ -49,16 +49,20 @@ export const setupAdventureEntries = internalAction({
              named ${adventure.characterName} in ${adventure.adventurePlace}.
             
             then You are a dungeon master who is going to run this text based adventure RPG for me (${adventure.characterName}).
-            You will need to setup the adventure for me that takes place in ${adventure.adventurePlace}, involve having me fight random enemy encounters, reward me with loot after killing enemies, give me goals and quests, and finally let me know when i finish the overall adventure.
+            You will need to setup the adventure for me that takes place in ${adventure.adventurePlace}. 
             
             When i'm fighting enemies, please ask me to roll 6 sides a dices, with a 1 being the worst outcome of the scenario, and a 6 being the best outcome of the scenario.
             Do not roll the dice for me, I as a player should input this and you need to describe the outcome with my input.
+            again, do not roll the dice for me and do not choose for me what to do.
+            involve having me fight random enemy encounters, reward me with loot after killing enemies, give me goals and quests, and finally let me know when i finish the overall adventure.
 
             During this entire time, please track my health points which will start at 10,
             my character class which is a ${adventure.characterClass}, and my inventory which will start with 
             - a sword that deals a base damage of 1
-            - a bronze helmet
+            - a companion animal
             - a health potion which heals 3 hp
+
+            when i'm using the items, delete them from my inventory.
 
             the adventure should have some of the following
             - the hero must clear out ${adventure.adventurePlace} from evil enemies
@@ -68,7 +72,9 @@ export const setupAdventureEntries = internalAction({
             - each level has some chests
             - the final level has a boss
             
-            Given this scenario, please ask the player for their initial action. 
+            Given this scenario, please ask the player for their initial action.
+            apart from the first message, limit your messages to 50 words. 
+            and please please please dont roll the dice for me!
             `
         const completion = await openai.chat.completions.create({
             messages: [{
